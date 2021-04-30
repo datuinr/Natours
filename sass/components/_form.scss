@@ -1,0 +1,97 @@
+.form {
+    &_group:not(:last-child){
+        margin-bottom:2rem;
+    }
+
+    &_input {
+        font-size: 1.5rem;
+        font-family: inherit;
+        color: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: 2px;
+        background-color: rgba($color-white, .5);
+        border: none;
+        border-bottom: 3px solid transparent; //prevent pixels from shifting
+        width: 90%;
+        display: block;
+
+        &:focus { //good for users only using a keyboard to navigate through page
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: 3px solid $color-primary; //add border-bottom on input to prevent pixels from shifting
+    
+        }
+
+        &:focus:invalid {
+            border-bottom: 3px solid $color-secondary-dark; //shows secondary if input is invalid
+        }
+
+        &::-webkit-input-placeholder { //pseudo element works for safari and chrome
+            color: $color-grey-dark-2;
+        }
+    }
+
+    &_label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-top: 2rem;
+        display: block;
+        transition: all .3s;
+    }
+
+    &_input:placeholder-shown + &_label{ // + adjacent sibling selector & ~ sibling selector is there are others in-between
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4rem);
+    }
+
+    &_radio-group {
+        width: 49%;
+        display: inline-block;
+    }
+
+    &_radio-input {
+        display: none;
+    }
+
+    &_radio-label {
+        font-size: $default-font-size;
+        cursor: pointer;
+        position: relative;
+        padding-left: 4.5rem;
+        
+    }
+
+    &_radio-button {
+        height: 3rem;
+        width: 3rem;
+        border: 5px solid $color-primary;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        top: -.5rem;
+        left: 0;
+
+        &::after {
+            content: "";
+            display: block;
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            background-color: $color-primary-dark;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+    }
+
+    &_radio-input:checked ~ &_radio-label &_radio-button::after{
+        //as soon as radio element is selected, it becomes checked(checked pseudo-class)
+        //then select sibling and its child cause thats the one that'll change
+        opacity: 1;
+    }
+}

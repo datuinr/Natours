@@ -1,0 +1,41 @@
+.header {
+    height: 95vh;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.801), /*hex with transparency only works with sass*/
+        rgba($color-primary-dark, 0.801)), 
+        url(../img/hero.jpg); 
+    /*linear-gradient followed by a comma will add a gradient on top of hero image
+    adding "to right", CSS now understands to start from left to right
+    adding "to right bottom" directs it to the bottom right corner
+    rgba - color opacity;
+    */
+    background-size: cover;
+    background-position: top; /* top center or bottom */
+    position: relative;
+
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    /*
+    polygon(x y, x y, x y, x y)
+    specify the corners to get desired polygon
+    */
+
+
+    &_logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+
+    &_logo {
+        height: 3.5rem;
+    }
+    
+    &_text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%); /*it will be shifted half of the width of the left side*/
+        text-align: center;
+    }
+}

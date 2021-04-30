@@ -1,0 +1,19 @@
+*, /*universal selector*/
+*::after,
+*::before { 
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%   /* 10 divided by 16 = .625*/
+    /*10px; 1rem = 10px*/
+    /*setting the font size in pixels restricts users from changing font size on browser, instead convert to percentage*/
+    /*rem not supported on IE9*/
+}
+
+body {
+    box-sizing: border-box;
+}
+
