@@ -7,10 +7,26 @@
 }
 
 html {
-    font-size: 62.5%   /* 10 divided by 16 = .625*/
-    /*10px; 1rem = 10px*/
+    //this defines what 1rem is
+    font-size: 62.5%;   /* 1 rem = 10px; 10px divided by 16px = 62.5% */
     /*setting the font size in pixels restricts users from changing font size on browser, instead convert to percentage*/
     /*rem not supported on IE9*/
+
+    // @include respond(phone) {
+    //     font-size: 50%; // since tab-port is already at 50% we dont need phone
+    // }
+
+    @include respond(tab-land) { //width < 900?
+        font-size: 56.25%; //1 rem = 9px, 9/16 = 56.25%
+    }
+
+    @include respond(tab-port) { //width < 600?
+        font-size: 50%; //1 rem = 8px, 8/16 = 50%
+    }
+
+    @include respond(big-desktop) {
+        font-size: 80%; //1 rem = 12px, 12/16 = 75%
+    }
 }
 
 body {

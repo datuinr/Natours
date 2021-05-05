@@ -1,3 +1,18 @@
+/*
+0-600px: phone
+600-900px: tablet portrait
+900-1200px: tablet landscape
+[1200 - 1800px] normal styles apply
+1800px + : big desktop 
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em=16px
+*/
 @keyframes moveInLeft {
   /*animation defined by @keyframes and name*/
   0% {
@@ -41,7 +56,19 @@
   box-sizing: inherit; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+  /* 1 rem = 10px; 10px divided by 16px = 62.5% */
+  /*setting the font size in pixels restricts users from changing font size on browser, instead convert to percentage*/
+  /*rem not supported on IE9*/ }
+  @media (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media (min-width: 112.5em) {
+    html {
+      font-size: 80%; } }
 
 body {
   box-sizing: border-box; }
