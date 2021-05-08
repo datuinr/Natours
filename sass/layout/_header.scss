@@ -1,10 +1,10 @@
 .header {
-    height: 95vh;
+    height: 85vh;
     background-image: linear-gradient(
         to right bottom,
         rgba($color-primary-light, 0.801), /*hex with transparency only works with sass*/
         rgba($color-primary-dark, 0.801)), 
-        url(../img/hero.jpg); 
+        url(../img/hero-small.jpg); 
     /*linear-gradient followed by a comma will add a gradient on top of hero image
     adding "to right", CSS now understands to start from left to right
     adding "to right bottom" directs it to the bottom right corner
@@ -13,12 +13,26 @@
     background-size: cover;
     background-position: top; /* top center or bottom */
     position: relative;
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     /*
     polygon(x y, x y, x y, x y)
     specify the corners to get desired polygon
     */
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0, 0)) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        height: 95vh;
+    }
+
+    @media (min-resolution: 192dpi) and (min-width: 37.5em), 
+            (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+            (min-width: 125em) {
+        background-image: linear-gradient(
+            to right bottom,
+            rgba($color-primary-light, 0.801), /*hex with transparency only works with sass*/
+            rgba($color-primary-dark, 0.801)), 
+            url(../img/hero.jpg); 
+    }
 
     @include respond(phone) {
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);

@@ -87,13 +87,19 @@
         box-decoration-break: clone;
 
         &--1 {
-            background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .85), rgba($color-secondary-dark, .85));
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-secondary-light, .85), 
+            rgba($color-secondary-dark, .85));
         }
         &--2 {
-            background-image: linear-gradient(to right bottom, rgba($color-primary-light, .85), rgba($color-primary-dark, .85));
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-primary-light, .85), 
+            rgba($color-primary-dark, .85));
         }
         &--3 {
-            background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, .85), rgba($color-tertiary-dark, .85));
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-tertiary-light, .85), 
+            rgba($color-tertiary-dark, .85));
         }
     }
 
@@ -118,11 +124,11 @@
     }
 
     //backside styling
-    &_cta {
+    &_cta { //call to action
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(0); //of the element
+        transform: translate(-50%, -50%); //of the element
         width: 90%;
         text-align: center;
     }
@@ -143,11 +149,7 @@
     }
 
 
-
-
-
-
-
+    //responsive styling
     @include respond(tab-port) {
         height: auto;
         border-radius:3px;
@@ -157,6 +159,7 @@
         &_side {
             height: auto;
             position: relative;
+            backface-visibility: hidden;
             box-shadow: none;
 
             &--back {
@@ -172,7 +175,6 @@
         &_details {
             padding: 1rem 3rem;
         }
-
 
         //backside styling
         &_cta {

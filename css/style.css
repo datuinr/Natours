@@ -344,7 +344,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(0);
+    transform: translate(-50%, -50%);
     width: 90%;
     text-align: center; }
   .card_price-box {
@@ -366,6 +366,7 @@ body {
       .card_side {
         height: auto;
         position: relative;
+        backface-visibility: hidden;
         box-shadow: none; }
         .card_side--back {
           transform: rotateY(0);
@@ -549,6 +550,11 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: all .3s; }
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    .popup {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.3); } }
   .popup_content {
     position: absolute;
     top: 50%;
@@ -638,15 +644,20 @@ body {
     .story {
       transform: skewX(0); } }
   .story_shape {
-    position: relative;
     width: 15.5rem;
     height: 15.5rem;
     float: left;
-    -webkit-shape-outside: circle(50% at 50% 50%);
-    shape-outside: circle(50% at 50% 50%);
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%);
-    transform: translateX(-3rem) skewX(12deg); }
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%; }
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0, 0)) {
+      .story_shape {
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        border-radius: none; } }
     @media (max-width: 37.5em) {
       .story_shape {
         transform: translateX(-3rem) skewX(0); } }
@@ -730,8 +741,8 @@ body {
         float: none; } }
 
 .header {
-  height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.801), rgba(40, 180, 133, 0.801)), url(../img/hero.jpg);
+  height: 85vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.801), rgba(40, 180, 133, 0.801)), url(../img/hero-small.jpg);
   /*linear-gradient followed by a comma will add a gradient on top of hero image
     adding "to right", CSS now understands to start from left to right
     adding "to right bottom" directs it to the bottom right corner
@@ -741,12 +752,18 @@ body {
   background-position: top;
   /* top center or bottom */
   position: relative;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   /*
     polygon(x y, x y, x y, x y)
     specify the corners to get desired polygon
     */ }
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0, 0)) {
+    .header {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      height: 95vh; } }
+  @media (min-resolution: 192dpi) and (min-width: 37.5em), (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), (min-width: 125em) {
+    .header {
+      background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.801), rgba(40, 180, 133, 0.801)), url(../img/hero.jpg); } }
   @media (max-width: 37.5em) {
     .header {
       -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
