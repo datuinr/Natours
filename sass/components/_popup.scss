@@ -28,18 +28,31 @@
     &_left {
         width: 33.33333%;
         display: table-cell;
+    
+        @include respond(tab-port) {
+            width: 0%
+        }
     }
-
+    
     &_right {
         width: 66.66667%;
         display: table-cell;
         vertical-align: middle;
         padding: 3rem 5rem;
+        
+        @include respond(tab-port) {
+            width: 100%
+        }
     }
 
     &_img {
         display: block;
         width: 100%;
+    
+        @include respond(tab-port) {
+            width: 0%;
+            overflow: hidden;
+        }
     }
 
     &_text {
@@ -58,6 +71,10 @@
         -ms-hyphens: auto;
         -webkit-hyphens: auto;
         hyphens: auto;
+
+        @include respond(tab-port) {
+            column-count: 1;
+        }
     }
 
     //open states

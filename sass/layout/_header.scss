@@ -13,13 +13,17 @@
     background-size: cover;
     background-position: top; /* top center or bottom */
     position: relative;
-
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     /*
     polygon(x y, x y, x y, x y)
     specify the corners to get desired polygon
     */
 
+    @include respond(phone) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
 
     &_logo-box {
         position: absolute;
